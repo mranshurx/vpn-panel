@@ -13,16 +13,17 @@ def bytes_to_hex(b: bytes) -> str:
 
 def apply_transform(payload_hex: str) -> str:
     payload = hex_to_bytes(payload_hex)
-    # LAB TEMPLATE: insert your packet mutation logic here.
-    # Example: replace a marker sequence.
-    # payload = payload.replace(b"\xde\xad\xbe\xef", b"\xca\xfe\xba\xbe")
+    # LAB TEMPLATE: Replace with your discovered packet mutation rules.
+    # Example mutation: flip marker bytes for analysis tracking.
+    if b"\xde\xad" in payload:
+        payload = payload.replace(b"\xde\xad", b"\xbe\xef")
     return bytes_to_hex(payload)
 
 def main():
     Path(OUT_DIR).mkdir(exist_ok=True)
     files = glob.glob(os.path.join(LOG_DIR, "*.hex"))
     if not files:
-        print("[!] No .hex files found in", LOG_DIR)
+        print("[!] No .hex files in", LOG_DIR)
         sys.exit(1)
     for f in files:
         raw_hex = Path(f).read_text().strip()
