@@ -11,14 +11,19 @@ jobs:
           distribution: 'temurin'
       - uses: android-actions/setup-android@v3
         with:
-          cmdline-tools: latest
+          cmdline-tools-version: 'latest'
+          packages: |
+            platform-tools
+            build-tools;34.0.0
+            platforms;android-34
+          accept-android-sdk-licenses: true
       - uses: actions/cache@v4
         with:
           path: |
             ~/.gradle/caches
             ~/.gradle/wrapper
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-      - run: chmod +x gradlew
+      - run: chmod +x gradlew || true
       - run: ./gradlew assembleDebug
       - uses: actions/upload-artifact@v4
         with:
