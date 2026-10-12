@@ -13,8 +13,8 @@ def bytes_to_hex(b: bytes) -> str:
 
 def apply_transform(payload_hex: str) -> str:
     payload = hex_to_bytes(payload_hex)
-    # LAB TEMPLATE: Replace with your discovered packet mutation rules.
-    # Example mutation: flip marker bytes for analysis tracking.
+    # LAB TEMPLATE: Insert exact byte mutations discovered from hex analysis.
+    # Example: flip a marker pattern for tracking/manipulation.
     if b"\xde\xad" in payload:
         payload = payload.replace(b"\xde\xad", b"\xbe\xef")
     return bytes_to_hex(payload)
