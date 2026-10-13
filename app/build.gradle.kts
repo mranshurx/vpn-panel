@@ -20,6 +20,13 @@ android {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "prore:core-ktx:1.12.0")
+                "proguard-rules.pro"
+            )
+        }
+    }
+}
+
+dependencies {
+    implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
 }
